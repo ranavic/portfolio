@@ -1,0 +1,12 @@
+.contact-page {
+  padding: 4rem 0;
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border-right: 0;
+}
+
+.form-control {
+  border-left: 0;
+}
