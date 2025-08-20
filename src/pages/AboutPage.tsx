@@ -1,14 +1,21 @@
-
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
+import TimelineItem, { TimelineEvent } from '../components/TimelineItem';
 import './AboutPage.css';
+
+const timelineEvents: TimelineEvent[] = [
+  { year: '2018', title: 'The Beginning', description: 'Started the journey as a self-taught artist, experimenting with different mediums.' },
+  { year: '2021', title: 'First Exhibition', description: "Featured in a local art gallery, which marked the first public recognition of the artist's work." },
+  { year: '2023', title: 'International Recognition', description: 'Received an award in an international art competition, opening doors to a global audience.' },
+  { year: '2025', title: 'Going Digital', description: 'Expanded into the world of digital art, creating stunning pieces that blend traditional techniques with modern technology.' },
+];
 
 const AboutPage: React.FC = () => {
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 page-container">
       <Row className="align-items-center">
         <Col md={4} className="text-center">
-          <Image src="https://picsum.photos/id/1005/400/400" roundedCircle className="artist-image" />
+          <Image src="https://picsum.photos/id/1005/400/400" roundedCircle className="artist-image" loading="lazy" alt="A portrait of the artist" />
         </Col>
         <Col md={8}>
           <h2>About the Artist</h2>
@@ -28,30 +35,9 @@ const AboutPage: React.FC = () => {
         <Col>
           <h3 className="text-center">Career Timeline</h3>
           <div className="timeline">
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <h5>2015 - The Beginning</h5>
-                <p>Started the journey as a self-taught artist, experimenting with different mediums.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <h5>2018 - First Exhibition</h5>
-                <p>Featured in a local art gallery, which marked the first public recognition of the artist's work.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <h5>2020 - International Recognition</h5>
-                <p>Received an award in an international art competition, opening doors to a global audience.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <h5>2023 - Going Digital</h5>
-                <p>Expanded into the world of digital art, creating stunning pieces that blend traditional techniques with modern technology.</p>
-              </div>
-            </div>
+            {timelineEvents.map((event) => (
+              <TimelineItem key={`${event.year}-${event.title}`} event={event} />
+            ))}
           </div>
         </Col>
       </Row>

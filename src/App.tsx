@@ -6,12 +6,18 @@ import HomePage from './pages/HomePage';
 import GalleryPage from './pages/GalleryPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import { useDarkMode } from './hooks/useDarkMode';
 import './App.css';
 
 const App: React.FC = () => {
+  const [theme, toggleTheme, isMounted] = useDarkMode();
+  
+  if (!isMounted) {
+    return <div />;
+  }
   return (
     <div className="App">
-      <Header />
+      <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
