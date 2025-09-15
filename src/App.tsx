@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,12 +11,14 @@ import './App.css';
 
 const App: React.FC = () => {
   const [theme, toggleTheme, isMounted] = useDarkMode();
-  
-  if (!isMounted) {
-    return <div />;
-  }
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <div className="App">
+    // Only render when the theme is mounted to avoid a flash of unstyled content
+    <div className="App" style={{ visibility: isMounted ? 'visible' : 'hidden' }}>
       <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Routes>
